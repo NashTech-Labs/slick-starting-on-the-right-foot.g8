@@ -17,7 +17,7 @@ trait H2DBComponent extends DBComponent {
 
   val randomDB = "jdbc:h2:mem:test" + UUID.randomUUID().toString() + ";"
 
-  val h2Url = randomDB + "  MODE=MySql;DATABASE_TO_UPPER=false;INIT=runscript from 'src/test/resources/schema.sql'\\;runscript from 'src/test/resources/schemadata.sql'"
+  val h2Url = randomDB + "MODE=MySql;DATABASE_TO_UPPER=false;INIT=runscript from 'src/test/resources/schema.sql'\\;runscript from 'src/test/resources/schemadata.sql'"
 
   val db: Database = {
     logger.info("Creating test connection ..................................")
