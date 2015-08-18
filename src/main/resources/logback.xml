@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%highlight([%level]) - [%date] - [%logger]  %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>log-%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<append>true</append>
+		<encoder>
+			<pattern>%highlight([%level]) - [%date] - [%logger]  %msg%n</pattern>
+		</encoder>
+	</appender>
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration> 
