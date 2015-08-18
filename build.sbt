@@ -1,4 +1,4 @@
-name := """slick-for-production"""
+name := """slick-starting-on-the-right-foot"""
 
 version := "1.0"
 
