@@ -5,7 +5,7 @@ Clone project
 
 ```$ git clone git@github.com:knoldus/slick-starting-on-the-right-foot.git```
 
-```$ cd slick-for-production```
+```$ cd slick-starting-on-the-right-foot``
 
 ```$ ./activator clean compile```
 
