@@ -1,6 +1,6 @@
 package com.knol.db.connection
 
-import scala.slick.driver.JdbcProfile
+import slick.driver.JdbcProfile
 
 trait DBComponent {
   
