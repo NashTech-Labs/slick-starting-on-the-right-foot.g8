@@ -8,15 +8,15 @@ trait BankInfoRepository extends BankInfoTable { this: DBComponent =>
 
   import driver.api._
 
-  def create(bankInfo: BankInfo): Future[Int] = db.run { brandTableInfoAutoInc += bankInfo }
+  def create(bankInfo: BankInfo): Future[Int] = db.run { bankTableInfoAutoInc += bankInfo }
 
-  def update(bankInfo: BankInfo): Future[Int] = db.run { brandInfoTableQuery.filter(_.id === bankInfo.id.get).update(bankInfo) }
+  def update(bankInfo: BankInfo): Future[Int] = db.run { bankInfoTableQuery.filter(_.id === bankInfo.id.get).update(bankInfo) }
 
-  def getById(id: Int): Future[Option[BankInfo]] = db.run { brandInfoTableQuery.filter(_.id === id).result.headOption }
+  def getById(id: Int): Future[Option[BankInfo]] = db.run { bankInfoTableQuery.filter(_.id === id).result.headOption }
 
-  def getAll(): Future[List[BankInfo]] = db.run { brandInfoTableQuery.to[List].result }
+  def getAll(): Future[List[BankInfo]] = db.run { bankInfoTableQuery.to[List].result }
 
-  def delete(id: Int): Future[Int] = db.run { brandInfoTableQuery.filter(_.id === id).delete }
+  def delete(id: Int): Future[Int] = db.run { bankInfoTableQuery.filter(_.id === id).delete }
 
   /**
    * Get bank and info using foreign key relationship
@@ -24,7 +24,7 @@ trait BankInfoRepository extends BankInfoTable { this: DBComponent =>
   def getBankWithInfo(): Future[List[(Bank, BankInfo)]] =
     db.run {
       (for {
-        info <- brandInfoTableQuery
+        info <- bankInfoTableQuery
         bank <- info.bank
       } yield (bank, info)).to[List].result
     }
@@ -34,7 +34,7 @@ trait BankInfoRepository extends BankInfoTable { this: DBComponent =>
    */
   def getAllBankWithInfo(): Future[List[(Bank, Option[BankInfo])]] =
     db.run {
-      brandTableQuery.joinLeft(brandInfoTableQuery).on(_.id === _.bankId).to[List].result
+      bankTableQuery.joinLeft(bankInfoTableQuery).on(_.id === _.bankId).to[List].result
     }
 }
 
@@ -47,14 +47,14 @@ private[repo] trait BankInfoTable extends BankTable { this: DBComponent =>
     val owner = column[String]("owner")
     val bankId = column[Int]("bank_id")
     val branches = column[Int]("branches")
-    def bank = foreignKey("bank_product_fk", bankId, brandTableQuery)(_.id)
+    def bank = foreignKey("bank_product_fk", bankId, bankTableQuery)(_.id)
     def * = (owner, branches, bankId, id.?) <> (BankInfo.tupled, BankInfo.unapply)
 
   }
 
-  protected val brandInfoTableQuery = TableQuery[BankInfoTable]
+  protected val bankInfoTableQuery = TableQuery[BankInfoTable]
 
-  protected def brandTableInfoAutoInc = brandInfoTableQuery returning brandInfoTableQuery.map(_.id)
+  protected def bankTableInfoAutoInc = bankInfoTableQuery returning bankInfoTableQuery.map(_.id)
 
 }
 
