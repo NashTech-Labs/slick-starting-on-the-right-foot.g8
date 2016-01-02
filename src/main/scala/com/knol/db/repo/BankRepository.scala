@@ -12,31 +12,31 @@ trait BankRepository extends BankTable { this: DBComponent =>
    * @param bank
    * create new bank
    */
-  def create(bank: Bank): Future[Int] = db.run { brandTableAutoInc += bank }
+  def create(bank: Bank): Future[Int] = db.run { bankTableAutoInc += bank }
 
   /**
    * @param bank
    * update existing bank
    */
-  def update(bank: Bank): Future[Int] = db.run { brandTableQuery.filter(_.id === bank.id.get).update(bank) }
+  def update(bank: Bank): Future[Int] = db.run { bankTableQuery.filter(_.id === bank.id.get).update(bank) }
 
   /**
    * @param id
    * Get bank by id
    */
-  def getById(id: Int): Future[Option[Bank]] = db.run { brandTableQuery.filter(_.id === id).result.headOption }
+  def getById(id: Int): Future[Option[Bank]] = db.run { bankTableQuery.filter(_.id === id).result.headOption }
 
   /**
    * @return
    * Get all banks
    */
-  def getAll(): Future[List[Bank]] = db.run { brandTableQuery.to[List].result }
+  def getAll(): Future[List[Bank]] = db.run { bankTableQuery.to[List].result }
 
   /**
    * @param id
    * delete bank by id
    */
-  def delete(id: Int): Future[Int] = db.run { brandTableQuery.filter(_.id === id).delete }
+  def delete(id: Int): Future[Int] = db.run { bankTableQuery.filter(_.id === id).delete }
 
 }
 
@@ -51,9 +51,9 @@ private[repo] trait BankTable { this: DBComponent =>
 
   }
 
-  protected val brandTableQuery = TableQuery[BankTable]
+  protected val bankTableQuery = TableQuery[BankTable]
 
-  protected def brandTableAutoInc = brandTableQuery returning brandTableQuery.map(_.id)
+  protected def bankTableAutoInc = bankTableQuery returning bankTableQuery.map(_.id)
 
 }
 
