@@ -2,7 +2,7 @@ name := """slick-starting-on-the-right-foot"""
 
 version := "1.0"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 
 
