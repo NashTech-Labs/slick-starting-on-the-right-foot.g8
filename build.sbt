@@ -1,18 +1,12 @@
-name := """slick-starting-on-the-right-foot"""
-
-version := "1.0"
-
-scalaVersion := "2.11.8"
-
-
-
-libraryDependencies ++= Seq(
-                      "mysql"                %     "mysql-connector-java"     %      "5.1.36",
-		      "com.typesafe.slick"  %%     "slick-hikaricp"           %      "3.1.1",
-                      "ch.qos.logback"       %     "logback-classic"          %      "1.1.3",
-                      "com.typesafe.slick"   %%    "slick"            	      %      "3.1.1",
-                      "org.scalatest"        %%    "scalatest"    	      %      "2.2.5"     %    "test",
-                      "com.h2database"       % 	   "h2"                       %      "1.4.187"    %   "test"
-)
-
-
+// This build is for this Giter8 template.
+// To test the template run `g8` or `g8Test` from the sbt session.
+// See http://www.foundweekends.org/giter8/testing.html#Using+the+Giter8Plugin for more details.
+lazy val root = (project in file(".")).
+  settings(
+    name := "slick-starting-on-the-right-foot",
+    test in Test := {
+      val _ = (g8Test in Test).toTask("").value
+    },
+    scriptedLaunchOpts ++= List("-Xms1024m", "-Xmx1024m", "-XX:ReservedCodeCacheSize=128m", "-XX:MaxPermSize=256m", "-Xss2m", "-Dfile.encoding=UTF-8"),
+    resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns)
+  )

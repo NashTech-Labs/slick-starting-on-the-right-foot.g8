@@ -1,5 +1,7 @@
-# slick-starting-on-the-right-foot
-This is an activator project for showcasing best practices and providing a seed for starting with Slick.
+A [Giter8][g8] template for showcasing best practices and providing a seed for starting with Slick.
+
+slick-starting-on-the-right-foot
+----------------------------------
 
 #### Clone Project:
 
@@ -54,3 +56,14 @@ info] Running com.knol.db.Demo
 List((Bank(ICICI bank,Some(1)),Some(BankInfo(Goverment,1000,1,Some(1)))), (Bank(SBI Bank,Some(2)),None))
 List((Bank(ICICI bank,Some(1)),Some(BankProduct(car loan,1,Some(1)))), (Bank(SBI Bank,Some(2)),None))
 ```
+
+Template license
+----------------
+Written in ​ 2017​ by ​ [Knoldus Software LLP](http://knoldus.com)
+
+To the extent possible under law, the author(s) have dedicated all copyright and
+related
+and neighboring rights to this template to the public domain worldwide.
+This template is distributed without any warranty. See
+<http://creativecommons.org/publicdomain/zero/1.0/>.
+[g8]: http://www.foundweekends.org/giter8/
